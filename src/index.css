@@ -1,12 +1,18 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+
+  button:active {
+    transform: scale(0.95);
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease-in-out;
+  }
+  
   :root {
     --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
@@ -67,35 +73,39 @@
   .glass-panel {
     @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
   }
-  
+
   .button-glow {
     @apply relative overflow-hidden;
   }
-  
+
   .button-glow::after {
     @apply content-[''] absolute top-0 left-0 w-full h-full bg-white/20 opacity-0 transition-opacity duration-300;
   }
-  
+
   .button-glow:hover::after {
     @apply opacity-100;
   }
-  
+
+  .button-glow:active::after {
+    @apply opacity-100 bg-white/40 scale-95 transition-all duration-100;
+  }
+
   .heading-accent {
     @apply font-sans font-bold relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-16 after:h-1 after:bg-gold;
   }
-  
+
   .text-shimmer {
     @apply bg-gradient-to-r from-navy via-navy/80 to-navy bg-[length:200%_100%] bg-clip-text text-transparent animate-text-shimmer;
   }
-  
+
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24;
   }
-  
+
   .fade-in-section {
     @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
   }
-  
+
   .fade-in-section.is-visible {
     @apply opacity-100 translate-y-0;
   }
